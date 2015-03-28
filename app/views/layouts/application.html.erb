@@ -18,9 +18,14 @@
       <a class="brand" href="#">Project name</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to "Sign up now!", signup_path %></li>
+          <li><a href="#contact">查看所有用户信息</a></li>
+          <% if signed_in? %>
+            <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

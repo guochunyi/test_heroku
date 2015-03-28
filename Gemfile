@@ -34,6 +34,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 # gem 'nokogiri'
 
 # To use ActiveModel has_secure_password
