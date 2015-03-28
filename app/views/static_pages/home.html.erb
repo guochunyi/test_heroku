@@ -1,7 +1,7 @@
 <% if signed_in? %>
   <h1>
     <%= gravatar_for current_user %>
-    <%= current_user.name %> 谢谢你登录了我们网站！你已经登录了 <%= current_user.count %> 次了，总共登录时间是 {M} 分钟了。
+    <%= current_user.name %> 谢谢你登录了我们网站！你已经登录了 <%= current_user.count %> 次了，总共登录时间是 <%= @current_login_time %> 分钟了。
   </h1>
 <% else %>
   <h1>“你好，陌生人！你没有登录，或者你还没有注册，但是你已经浏览这个页面 <%= anony_view_time(@anony_id) %>分钟了。”</h1>

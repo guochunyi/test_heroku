@@ -12,7 +12,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Hello world!"
+
+      delete_online_user(request.remote_addr, RedisHelper::UserType::ANONY)
+      view_time_expire(request.remote_addr)
+      
       redirect_to root_url
     else
       render 'new'

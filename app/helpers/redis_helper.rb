@@ -47,4 +47,23 @@ module RedisHelper
       (Time.now - $redis.get(id).to_time).to_i / 60
     end
   end
+
+  def delete_online_user(id, user_type)
+    keys_in_last_5_minutes(user_type).each do |e|
+      $redis.srem(e, id)
+    end
+  end
+
+  def login_view_time(id)
+    if $redis.get(id) == nil
+      $redis.set(id, Time.now) 
+      0
+    else
+      (Time.now - $redis.get(id).to_time).to_i / 60
+    end
+  end
+
+  def view_time_expire(id)
+    $redis.del(id)
+  end
 end

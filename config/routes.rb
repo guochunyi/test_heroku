@@ -1,11 +1,12 @@
 FirstTest::Application.routes.draw do
-  get "static_pages/help"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/to_json', to: 'static_pages#to_json', via: 'get'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
