@@ -36,4 +36,15 @@ module RedisHelper
     $redis.sadd(key, id)
     $redis.expire(key, 5.minute.to_i)
   end
+
+  def anony_view_time(id)
+    if $redis.get(id) == nil
+      $redis.set(id, Time.now)
+      $redis.expire(id, 5.minute.to_i)
+      0
+    else
+      $redis.expire(id, 5.minute.to_i)
+      (Time.now - $redis.get(id).to_time).to_i / 60
+    end
+  end
 end
